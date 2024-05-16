@@ -4,34 +4,34 @@ CREATE DATABASE IF NOT EXISTS rentaautos;
 -- Usar la base de datos
 USE rentaautos;
 
--- Tabla de usuario
+-- Crear la tabla usuario
 CREATE TABLE IF NOT EXISTS usuario (
     usu_id INT NOT NULL AUTO_INCREMENT,
-    usu_nombre CHAR(100) NOT NULL,
+    usu_nombre VARCHAR(100) NOT NULL,
+    usu_apellidos VARCHAR(100) NOT NULL,
     usu_fechaNacimiento DATE,
     usu_genero ENUM('Hombre', 'Mujer', 'No especificar'),
-    usu_correo CHAR(200) NOT NULL,
-    usu_telefono CHAR(10),
-    usu_direccion CHAR(1000),
+    usu_correo VARCHAR(200) NOT NULL,
+    usu_telefono VARCHAR(10),
+    usu_direccion VARCHAR(1000),
     usu_password VARCHAR(10000) NOT NULL,
-    PRIMARY KEY (usu_id),
-    UNIQUE (usu_correo)
+    PRIMARY KEY (usu_id)
 );
 
--- Tabla auto
+-- Crear la tabla auto
 CREATE TABLE IF NOT EXISTS auto (
     aut_id INT NOT NULL AUTO_INCREMENT,
-    aut_modelo CHAR(200) NOT NULL,
+    aut_modelo VARCHAR(200) NOT NULL,
     aut_asientos INT NOT NULL,
     aut_transmision ENUM('Manual', 'Automatica') NOT NULL,
     aut_costoDia DECIMAL(6, 2) NOT NULL,
-    aut_disponible ENUM ('True', 'False') NOT NULL,
-    aut_localizacion CHAR(500) NOT NULL,
-    aut_imagen CHAR(1000) NOT NULL,
+    aut_disponible ENUM('True', 'False') ,
+    aut_localizacion VARCHAR(500) NOT NULL,
+    aut_imagen VARCHAR(1000) NOT NULL,
     PRIMARY KEY (aut_id)
 );
 
--- Tabla renta
+-- Crear la tabla renta
 CREATE TABLE IF NOT EXISTS renta (
     renta_id INT NOT NULL AUTO_INCREMENT,
     rent_usu_id INT NOT NULL,
@@ -42,21 +42,18 @@ CREATE TABLE IF NOT EXISTS renta (
     rent_finReal DATE,
     rent_costoReal DECIMAL(7, 2),
     PRIMARY KEY (renta_id),
-    FOREIGN KEY (rent_usu_id) REFERENCES usuario(usu_id) 
-    	ON DELETE SET NULL 
-    	ON UPDATE CASCADE,
-    FOREIGN KEY (rent_aut_id) REFERENCES auto(aut_id)
-    	ON DELETE SET NULL
-    	ON UPDATE CASCADE
+    FOREIGN KEY (rent_usu_id) REFERENCES usuario(usu_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (rent_aut_id) REFERENCES auto(aut_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO usuario (usu_nombre, usu_fechaNacimiento, usu_genero, usu_correo, usu_telefono, usu_direccion, usu_password)
+-- Insertar datos en la tabla usuario
+INSERT INTO usuario (usu_nombre, usu_apellidos, usu_fechaNacimiento, usu_genero, usu_correo, usu_telefono, usu_direccion, usu_password)
 VALUES 
-('Juan Pérez', '1990-01-15', 'Hombre', 'juan.perez@example.com', '5551234567', 'Calle Falsa 123, Ciudad', 'password1'),
-('María Gómez', '1985-05-20', 'Mujer', 'maria.gomez@example.com', '5557654321', 'Avenida Siempre Viva 742, Ciudad', 'password2'),
-('Carlos Sánchez', '1992-07-30', 'Hombre', 'carlos.sanchez@example.com', '5559876543', 'Boulevard de los Sueños Rotos 456, Ciudad', 'password3'),
-('Ana López', '1988-03-10', 'Mujer', 'ana.lopez@example.com', '5556543210', 'Pasaje de los Milagros 789, Ciudad', 'password4'),
-('Elena Martínez', '1995-12-25', 'No especificar', 'elena.martinez@example.com', '5554321098', 'Plaza de la Libertad 101, Ciudad', 'password5');
+('Juan Pérez', 'Urbina Navarrete','1990-01-15', 'Hombre', 'juan.perez@example.com', '5551234567', 'Calle Falsa 123, Ciudad', 'password1'),
+('María Gómez', 'Vallejo Perez','1985-05-20', 'Mujer', 'maria.gomez@example.com', '5557654321', 'Avenida Siempre Viva 742, Ciudad', 'password2'),
+('Carlos Sánchez', 'Saldaña Algo' ,'1992-07-30', 'Hombre', 'carlos.sanchez@example.com', '5559876543', 'Boulevard de los Sueños Rotos 456, Ciudad', 'password3'),
+('Ana López', 'Coronilla Algo','1988-03-10', 'Mujer', 'ana.lopez@example.com', '5556543210', 'Pasaje de los Milagros 789, Ciudad', 'password4'),
+('Elena Martínez', 'García Algo' ,'1995-12-25', 'No especificar', 'elena.martinez@example.com', '5554321098', 'Plaza de la Libertad 101, Ciudad', 'password5');
 
 -- Insertar datos en la tabla auto
 INSERT INTO auto (aut_modelo, aut_asientos, aut_transmision, aut_costoDia, aut_disponible, aut_localizacion, aut_imagen)
