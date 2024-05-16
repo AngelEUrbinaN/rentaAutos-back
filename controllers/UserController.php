@@ -13,22 +13,21 @@
       if($_SERVER["REQUEST_METHOD"] == "POST"){
         $correo = $_POST['correo'];
         $password = $_POST['password'];
-
         //validamos que no esten vacios
         if(!empty($correo) && !empty($password)){
           $user = $this->userService->login($correo, $password);
           if ($user){
             // redirigir a otra página
             echo json_encode(array("success" => true, "message" => "Inicio Satisfactorio"));
-        } else {
-          echo json_encode(array("success" => false, "message" => "Credenciales Incorrectas"));
-        }
-        } else {
-          echo json_encode(array("success" => false, "message" => "Faltan Datos"));
-        }
-      } else {
-        echo json_encode(array("success" => false, "message" => "Tipo de peticion incorrecta"));
-      }
+          } else {
+            echo json_encode(array("success" => false, "message" => "Credenciales Incorrectas"));
+          }
+          } else {
+            echo json_encode(array("success" => false, "message" => "Faltan Datos"));
+          }
+          } else {
+            echo json_encode(array("success" => false, "message" => "Tipo de peticion incorrecta"));
+          }
     }
 
     public function registrar() {

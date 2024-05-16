@@ -32,12 +32,11 @@
     }
 
     public function login($correo, $password){
-      $sql_usuario = "SELECT * FROM usuario WHERE usu_correo = '$correo' ";
-
+      $sql_usuario = "SELECT * FROM usuario WHERE usu_correo = '$correo'";
       $result = $this->db->query($sql_usuario);
       if ($result->num_rows == 1) { //si encontro el usuario
         $user = $result->fetch_assoc();
-        if(password_verify($password, $user['password'])){
+        if(password_verify($password, $user['usu_password'])){
           return $user;
         }
       }
