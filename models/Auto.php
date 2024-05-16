@@ -49,7 +49,7 @@
     }  
 
     public function getImagen() {
-      return $this->eimagen;
+      return $this->imagen;
     }
   }
 ?>
