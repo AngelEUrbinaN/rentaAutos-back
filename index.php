@@ -1,9 +1,11 @@
 <?php
   require_once '../rentaAutos-back/controllers/UserController.php';
   require_once '../rentaAutos-back/controllers/AutosController.php';
+  require_once '../rentaAutos-back/controllers/RentaController.php';
 
   $userController = new UserController();
   $AutosController = new AutosController();
+  $RentaController = new RentaController();
 
   switch ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
@@ -12,6 +14,8 @@
         $userController->registrar();
       } else if($accion == 'login'){
         $userController->login();
+      } else if($accion == 'registrarRenta'){
+        $RentaController->registrarRenta();
       }
     break;
     case 'GET':
