@@ -19,9 +19,10 @@
       $costoEstimado = $renta->getCostoEstimado();
       $finReal = $renta->getFinReal();
       $costoReal = $renta->getCostoReal();
+      $pagoId = $renta->getPagoId();
 
-      $sql_insertar = "INSERT INTO renta(rent_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimdo, rent_finReal, rent_costoReal)
-                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', '$finReal', '$costoReal')";
+      $sql_insertar = "INSERT INTO renta (rent_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal, rent_pag_id)
+                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', '$finReal', '$costoReal', '$pagoId')";
 
       if ($this->db->query($sql_insertar) == TRUE ) {
         return true;

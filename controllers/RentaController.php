@@ -17,10 +17,11 @@
       $costoEstimado = $_POST['costoEstimado'];
       $finReal = $_POST['finReal'];
       $costoReal = $_POST['costoReal'];
+      $pagoId = $_POST['pagoId'];
 
 
-      $rentaNueva = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal);
-      $resultado = $this->rentaService->registrarRenta($rentaNueva);
+      $renta = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal, $pagoId);
+      $resultado = $this->rentaService->registrarRenta($renta);
 
       if($resultado){
         echo json_encode(array("success" => true, "message" => "Renta Registrada Satisfactoriamente"));
