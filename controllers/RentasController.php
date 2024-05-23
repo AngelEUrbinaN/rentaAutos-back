@@ -1,15 +1,15 @@
 <?php
-  require_once '../rentaAutos-back/services/RentaService.php';
+  require_once '../rentaAutos-back/services/RentasService.php';
 
-  class RentaController {
-    private $rentaService;
+  class RentasController {
+    private $rentasService;
 
     public function __construct() {
       $db = (new Database())->getConnection();
-      $this->rentaService = new RentaService($db);
+      $this->rentasService = new RentasService($db);
     }
 
-    public function registrar() {
+    public function registrarRenta() {
       $usuarioId = $_POST['usuarioId'];
       $autoId = $_POST['autoId'];
       $diaInicio = $_POST['diaInicio'];
@@ -17,11 +17,10 @@
       $costoEstimado = $_POST['costoEstimado'];
       $finReal = $_POST['finReal'];
       $costoReal = $_POST['costoReal'];
-      $pagoId = $_POST['pagoId'];
 
+      $rentaNueva = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal);
 
-      $renta = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal, $pagoId);
-      $resultado = $this->rentaService->registrarRenta($renta);
+      $resultado = $this->rentasService->registrarRenta($rentaNueva);
 
       if($resultado){
         echo json_encode(array("success" => true, "message" => "Renta Registrada Satisfactoriamente"));

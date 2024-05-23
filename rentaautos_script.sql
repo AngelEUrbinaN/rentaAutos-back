@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     usu_apellidos VARCHAR(100) NOT NULL,
     usu_fechaNacimiento DATE,
     usu_genero ENUM('Hombre', 'Mujer', 'No especificar'),
-    usu_correo VARCHAR(200) UNIQUE NOT NULL,
+    usu_correo VARCHAR(200) NOT NULL,
     usu_telefono VARCHAR(10),
     usu_direccion VARCHAR(1000),
     usu_password VARCHAR(10000) NOT NULL,
@@ -25,24 +25,15 @@ CREATE TABLE IF NOT EXISTS auto (
     aut_asientos INT NOT NULL,
     aut_transmision ENUM('Manual', 'Automatica') NOT NULL,
     aut_costoDia DECIMAL(6, 2) NOT NULL,
-    aut_disponible ENUM('True', 'False'),
+    aut_disponible ENUM('True', 'False') ,
     aut_localizacion VARCHAR(500) NOT NULL,
     aut_imagen VARCHAR(1000) NOT NULL,
     PRIMARY KEY (aut_id)
 );
 
--- Crear la tabla pago
-CREATE TABLE IF NOT EXISTS pago (
-    pag_id INT NOT NULL AUTO_INCREMENT,
-    pag_monto DECIMAL(7, 2) NOT NULL,
-    pag_fecha DATE NOT NULL,
-    pag_metodo VARCHAR(100) NOT NULL,
-    PRIMARY KEY (pag_id)
-);
-
 -- Crear la tabla renta
 CREATE TABLE IF NOT EXISTS renta (
-    rent_id INT NOT NULL AUTO_INCREMENT,
+    renta_id INT NOT NULL AUTO_INCREMENT,
     rent_usu_id INT NOT NULL,
     rent_aut_id INT NOT NULL,
     rent_diaInicio DATE NOT NULL,
@@ -50,11 +41,9 @@ CREATE TABLE IF NOT EXISTS renta (
     rent_costoEstimado DECIMAL(7, 2) NOT NULL,
     rent_finReal DATE,
     rent_costoReal DECIMAL(7, 2),
-    rent_pag_id INT UNIQUE, -- Relación uno a uno con la tabla pago
-    PRIMARY KEY (rent_id),
+    PRIMARY KEY (renta_id),
     FOREIGN KEY (rent_usu_id) REFERENCES usuario(usu_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (rent_aut_id) REFERENCES auto(aut_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (rent_pag_id) REFERENCES pago(pag_id) -- Clave foránea hacia la tabla pago
+    FOREIGN KEY (rent_aut_id) REFERENCES auto(aut_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Insertar datos en la tabla usuario
@@ -75,20 +64,11 @@ VALUES
 ('Chevrolet Cruze', 5, 'Manual', 40.00, TRUE, 'Estacionamiento D', 'imagen4.jpg'),
 ('Mazda 3', 5, 'Automatica', 60.00, TRUE, 'Estacionamiento E', 'imagen5.jpg');
 
--- Insertar datos en la tabla pago
-INSERT INTO pago (pag_monto, pag_fecha, pag_metodo)
-VALUES 
-(350.00, '2024-06-07', 'Visa'),
-(135.00, '2024-06-05', 'Paypal'),
-(385.00, '2024-06-10', 'Visa'),
-(160.00, '2024-06-08', 'Visa'),
-(420.00, '2024-06-12', 'Efectivo');
-
 -- Insertar datos en la tabla renta
-INSERT INTO renta (rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal, rent_pag_id)
+INSERT INTO renta (rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal)
 VALUES 
-(1, 1, '2024-06-01', '2024-06-07', 350.00, '2024-06-07', 350.00, 1),
-(2, 2, '2024-06-02', '2024-06-05', 135.00, '2024-06-05', 135.00, 2),
-(3, 3, '2024-06-03', '2024-06-10', 385.00, '2024-06-10', 385.00, 3),
-(4, 4, '2024-06-04', '2024-06-08', 160.00, '2024-06-08', 160.00, 4),
-(5, 5, '2024-06-05', '2024-06-12', 420.00, '2024-06-12', 420.00, null);
+(1, 1, '2024-06-01', '2024-06-07', 350.00, '2024-06-07', 350.00),
+(2, 2, '2024-06-02', '2024-06-05', 135.00, '2024-06-05', 135.00),
+(3, 3, '2024-06-03', '2024-06-10', 385.00, '2024-06-10', 385.00),
+(4, 4, '2024-06-04', '2024-06-08', 160.00, '2024-06-08', 160.00),
+(5, 5, '2024-06-05', '2024-06-12', 420.00, '2024-06-12', 420.00);
