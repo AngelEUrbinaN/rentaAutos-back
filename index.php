@@ -1,7 +1,7 @@
 <?php
   require_once '../rentaAutos-back/controllers/UserController.php';
   require_once '../rentaAutos-back/controllers/AutosController.php';
-  require_once '../rentaAutos-back/controllers/RentaController.php';
+  require_once '../rentaAutos-back/controllers/RentaController.php'; //Comentario
 
   $userController = new UserController();
   $AutosController = new AutosController();
