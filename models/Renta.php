@@ -9,9 +9,8 @@
     private $costoEstimado;
     private $finReal;
     private $costoReal;
-    private $pagoId;
 
-    public function __construct ($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal, $pagoId) {
+    public function __construct ($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal) {
       $this->usuarioId = $usuarioId;
       $this->autoId = $autoId;
       $this->diaInicio = $diaInicio;
@@ -19,7 +18,6 @@
       $this->costoEstimado = $costoEstimado;
       $this->finReal = $finReal;
       $this->costoReal = $costoReal;
-      $this->pagoId = $pagoId;
     }
 
     public function getId() {
@@ -54,10 +52,6 @@
       return $this->costoReal;
     }
 
-    public function getPagoId() {
-      return $this->pagoId;
-    }
-
     public function setId($id) {
     	$this->id= $id;
     }
@@ -88,9 +82,6 @@
 
     public function setCostoReal($costoReal) {
       $this->costoReal = $costoReal;
-    }
-    public function setPagoId($pagoId) {
-      $this->pagoId = $pagoId;
     }
 	}
 ?>
