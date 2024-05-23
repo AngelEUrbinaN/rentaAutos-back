@@ -1,6 +1,6 @@
 <?php
 
-  class Renta  {
+  class Renta {
     private $id;
     private $usuarioId;
     private $autoId;
@@ -52,35 +52,35 @@
       return $this->costoReal;
     }
 
-    public function setId() {
+    public function setId($id) {
     	$this->id= $id;
     }
 
-    public function setUsuarioId() {
+    public function setUsuarioId($usuarioId) {
       $this->usuarioId = $usuarioId;
     }
 
-    public function setAutoId() {
+    public function setAutoId($autoId) {
       $this->autoId = $autoId;
     }
 
-    public function setDiaInicio() {
+    public function setDiaInicio($diaInicio) {
       $this->diaInicio = $diaInicio;
     }
 
-    public function setDiaFin() {
+    public function setDiaFin($diaFin) {
       $this->diaFin = $diaFin;
     }
 
-    public function setCostoEstimado() {
+    public function setCostoEstimado($costoEstimado) {
       $this->costoEstimado = $costoEstimado;
     }
 
-    public function setFinReal() {
+    public function setFinReal($finReal) {
       $this->finReal = $finReal;
     }  
 
-    public function setCostoReal() {
+    public function setCostoReal($costoReal) {
       $this->costoReal = $costoReal;
     }
 	}
