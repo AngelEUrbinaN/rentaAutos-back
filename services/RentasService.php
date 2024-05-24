@@ -21,7 +21,7 @@
       $costoReal = $rentaNueva->getCostoReal();
 
       $sql_insertar = "INSERT INTO renta(renta_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal)
-                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', '$finReal', '$costoReal')";
+                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', null, null)";
 
       if ($this->db->query($sql_insertar) == TRUE ) {
         return true;
