@@ -18,7 +18,7 @@
           $user = $this->userService->login($correo, $password);
           if ($user){
             // redirigir a otra página
-            echo json_encode(array("success" => true, "message" => "Inicio Satisfactorio"));
+            echo json_encode(array("success" => true, "message" => "Inicio Satisfactorio", "data" => $user));
           } else {
             echo json_encode(array("success" => false, "message" => "Credenciales Incorrectas"));
           }
