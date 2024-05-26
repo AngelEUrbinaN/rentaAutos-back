@@ -24,5 +24,16 @@
 
       return $autos;  
     }
+
+    public function obtenerCostoDiaPorID($autoID) {
+      $sql = "SELECT aut_costoDia FROM auto WHERE aut_id = '$autoID'";
+      $result = $this->db->query($sql);
+
+      if($result->num_rows == 1) {
+        return $result->fetch_assoc();
+      }
+      
+      return null;
+    }
   }
 ?>

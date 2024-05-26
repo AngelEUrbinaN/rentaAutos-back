@@ -16,6 +16,9 @@
         $userController->login();
       } else if($accion == 'rentar'){
         $RentasController->registrarRenta();
+      } else if($accion == 'buscarCostoDia'){
+        $autoID = $_POST['autID'];
+        $AutosController->obtenerCostoDiaPorID($autoID);
       }
     break;
     case 'GET':
