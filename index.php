@@ -22,6 +22,9 @@
       } else if($accion == 'getRentasById'){
         $userID = $_POST['idUser'];
         $RentasController->obtenerRentasPorUsuario($userID);
+      } else if($accion == 'obtenerAllData'){
+        $rentaID = $_POST['rentaID'];
+        $RentasController->obtenerAllDataRenta($rentaID);
       }
     break;
     case 'GET':

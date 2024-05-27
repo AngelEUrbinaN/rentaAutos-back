@@ -28,10 +28,20 @@
         echo json_encode(array("success" => false, "message" => "Error al registrar renta"));
       }
     }
+
     public function obtenerRentasPorUsuario($userID) {
       $rentasByUser = $this->rentasService->obtenerRentasPorUsuario($userID);
       if ($rentasByUser) {
         echo json_encode(array("success" => true, "rentas" => $rentasByUser));
+      } else {
+        echo json_encode(array("success" => false, "message" => "Error al obtener las rentas del usuario"));
+      }
+    }
+
+    public function obtenerAllDataRenta($rentaID) {
+      $renta = $this->rentasService->obtenerAllDataRenta($rentaID);
+      if ($renta) {
+        echo json_encode(array("success" => true, "renta" => $renta));
       } else {
         echo json_encode(array("success" => false, "message" => "Error al obtener las rentas del usuario"));
       }
