@@ -21,13 +21,31 @@
       $costoReal = $rentaNueva->getCostoReal();
 
       $sql_insertar = "INSERT INTO renta(renta_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal)
-                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', '$finReal', '$costoReal')";
+                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', null, null)";
 
-      if ($this->db->query($sql_insertar) == TRUE ) {
+      $sql_actualizar = "UPDATE auto SET aut_disponible = 'False' WHERE aut_id = '$autoId'";
+
+      if ($this->db->query($sql_insertar) == TRUE && $this->db->query($sql_actualizar) == TRUE) {
         return true;
       } else {
         return "Error: ". $this->db->error;
       }
+    }
+
+    public function obtenerRentasPorUsuario($userID) {
+      $sql = "SELECT a.*, r.* FROM renta r JOIN auto a ON r.rent_aut_id = a.aut_id WHERE r.rent_usu_id = '$userID'";
+      $result = $this->db->query($sql);
+
+      if($result->num_rows >= 1) {
+        // Ya que pueden haber más de una row, iteramos para guardar cada fila en un arreglo.
+        $rentas = [];
+        while($row = $result->fetch_assoc()) {
+          $rentas[] = $row;
+        }
+        return $rentas;
+      }
+      
+      return null;
     }
 	}
 ?>
