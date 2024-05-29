@@ -47,5 +47,16 @@
       
       return null;
     }
+
+    public function obtenerAllDataRenta($rentaID) {
+      $sql = "SELECT * FROM renta WHERE renta_id = '$rentaID'";
+      $result = $this->db->query($sql);
+
+      if($result->num_rows == 1) {
+        return $result->fetch_assoc();
+      }
+      
+      return null;
+    }
 	}
 ?>
