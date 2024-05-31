@@ -2,10 +2,12 @@
   require_once '../rentaAutos-back/controllers/UserController.php';
   require_once '../rentaAutos-back/controllers/AutosController.php';
   require_once '../rentaAutos-back/controllers/RentasController.php';
+  require_once '../rentaAutos-back/controllers/PagosController.php';
 
   $userController = new UserController();
   $AutosController = new AutosController();
   $RentasController = new RentasController();
+  $PagosController = new PagosController();
 
   switch ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
@@ -31,6 +33,8 @@
       } else if ($accion == 'actualizar') {
         $idUser = $_POST['idUpdate'];
         $userController->obtenerUsuarioPorId($idUser);
+      } else if($accion == 'pagar'){
+        $PagosController->registrarPago();
       }
     break;
     case 'GET':
