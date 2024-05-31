@@ -25,6 +25,12 @@
       } else if($accion == 'obtenerAllData'){
         $rentaID = $_POST['rentaID'];
         $RentasController->obtenerAllDataRenta($rentaID);
+      } else if ($accion == 'actualizarUsuario') {
+        $idUser = $_POST['id'];
+        $userController->actualizarUsuario($idUser);
+      } else if ($accion == 'actualizar') {
+        $idUser = $_POST['idUpdate'];
+        $userController->obtenerUsuarioPorId($idUser);
       }
     break;
     case 'GET':

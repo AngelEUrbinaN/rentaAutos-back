@@ -52,5 +52,44 @@
       }
       return null; //regresamos los usuarios
     }
+
+    public function obtenerUsuarioPorId($id){
+      $sql = "SELECT * FROM usuario WHERE usu_id = '$id'";
+      $result = $this->db->query($sql);
+
+      if($result->num_rows == 1){
+        return $result->fetch_assoc();
+      }
+
+      return null; 
+    }
+
+    public function actualizarUsuario($id, $usuario){
+      $nombre = $usuario->getNombre();
+      $apellidos = $usuario->getApellidos();
+      $fechaNacimiento = $usuario->getFechaNacimiento();
+      $genero = $usuario->getGenero();
+      $correo = $usuario->getCorreo();
+      $telefono = $usuario->getTelefono();
+      $direccion = $usuario->getDireccion();
+      $password = $usuario->getPassword();
+
+      $sql_update = "UPDATE usuario 
+        SET usu_nombre = '$nombre', 
+            usu_apellidos = '$apellidos', 
+            usu_fechaNacimiento = '$fechaNacimiento',
+            usu_genero = '$genero',
+            usu_correo = '$correo',
+            usu_telefono = '$telefono',
+            usu_direccion = '$direccion',
+            usu_password = '$password'
+        WHERE usu_id = '$id'";
+
+      if($this->db->query($sql_update) === TRUE){
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 ?>

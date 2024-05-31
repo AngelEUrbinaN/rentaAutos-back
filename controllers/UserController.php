@@ -50,5 +50,35 @@
         echo json_encode(array("success" => false, "message" => "Error al registrar usuario"));
       }
     }
+
+    public function obtenerUsuarioPorId ($id) {
+      $resultado = $this->userService->obtenerUsuarioPorId($id);
+      if ($resultado) {
+        echo json_encode(array("success" => true, "user" => $resultado));
+      } else {
+        echo json_encode(array("success" => false, "message" => "Error al Obtener Usuario"));
+      }
+    }
+
+    public function actualizarUsuario ($id) {
+      $nombre = $_POST['nombre'];
+      $apellidos = $_POST['apellidos'];
+      $fechaNacimiento = $_POST['fechaNacimiento'];
+      $genero = $_POST['genero'];
+      $correo = $_POST['correo'];
+      $telefono = $_POST['telefono'];
+      $direccion = $_POST['direccion'];
+      $password = $_POST['password'];
+
+      $usuarioNuevo = new User($nombre, $apellidos, $fechaNacimiento, $genero, $correo, $telefono, $direccion, $password);
+      
+      $resultado = $this->userService->actualizarUsuario($id, $usuarioNuevo);
+
+      if($resultado){
+        echo json_encode(array("success" => true, "message" => "Usuario Actualizado Satisfactoriamente"));
+      } else {
+        echo json_encode(array("success" => false, "message" => "Error al Actualizar Usuario"));
+      }
+    }
   }
 ?>
