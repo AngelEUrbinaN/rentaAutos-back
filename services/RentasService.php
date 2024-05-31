@@ -19,9 +19,10 @@
       $costoEstimado = $rentaNueva->getCostoEstimado();
       $finReal = $rentaNueva->getFinReal();
       $costoReal = $rentaNueva->getCostoReal();
+      $pagoId = $rentaNueva->getPagoId();
 
-      $sql_insertar = "INSERT INTO renta(renta_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal)
-                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', null, null)";
+      $sql_insertar = "INSERT INTO renta(renta_id, rent_usu_id, rent_aut_id, rent_diaInicio, rent_diaFin, rent_costoEstimado, rent_finReal, rent_costoReal, rent_pag_id)
+                          VALUES (null, '$usuarioId', '$autoId', '$diaInicio', '$diaFin', '$costoEstimado', null, null, null)";
 
       $sql_actualizar = "UPDATE auto SET aut_disponible = 'False' WHERE aut_id = '$autoId'";
 

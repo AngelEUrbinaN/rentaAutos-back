@@ -17,8 +17,9 @@
       $costoEstimado = $_POST['costoEstimado'];
       $finReal = $_POST['finReal'];
       $costoReal = $_POST['costoReal'];
+      $pagoId = $_POST['pagoId'];
 
-      $rentaNueva = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal);
+      $rentaNueva = new Renta($usuarioId, $autoId, $diaInicio, $diaFin, $costoEstimado, $finReal, $costoReal, $pagoId);
 
       $resultado = $this->rentasService->registrarRenta($rentaNueva);
 
