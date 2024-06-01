@@ -13,8 +13,9 @@
       $monto = $_POST['monto'];
       $fecha = $_POST['fecha'];
       $metodo = $_POST['metodo'];
+      $rentaId = $_POST['idRenta'];
 
-      $pagoNuevo = new Pago($monto, $fecha, $metodo);
+      $pagoNuevo = new Pago($monto, $fecha, $metodo, $rentaId);
 
       $resultado = $this->pagosService->registrarPago($pagoNuevo);
 

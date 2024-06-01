@@ -15,9 +15,10 @@
       $monto = $pagoNuevo->getMonto();
       $fecha = $pagoNuevo->getFecha();
       $metodo = $pagoNuevo->getMetodo();
+      $rentaId = $pagoNuevo->getRentaId();
 
-      $sql_insertar = "INSERT INTO pago(pag_id, pag_monto, pag_fecha, pag_metodo)
-                          VALUES (null, '$monto', '$fecha', '$metodo')";
+      $sql_insertar = "INSERT INTO pago(pag_id, pag_monto, pag_fecha, pag_metodo, pag_rent_id)
+                          VALUES (null, '$monto', '$fecha', '$metodo', '$rentaId')";
 
       if ($this->db->query($sql_insertar) == TRUE) {
         return true;

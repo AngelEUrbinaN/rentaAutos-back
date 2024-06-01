@@ -31,14 +31,6 @@ CREATE TABLE IF NOT EXISTS auto (
     PRIMARY KEY (aut_id)
 );
 
-CREATE TABLE IF NOT EXISTS pago (
-    pag_id INT NOT NULL AUTO_INCREMENT,
-    pag_monto DECIMAL(7, 2) NOT NULL,
-    pag_fecha DATE NOT NULL,
-    pag_metodo ENUM('Paypal', 'VISA', 'MasterCard', 'Mercado Pago', 'Efectivo') NOT NULL,
-    PRIMARY KEY (pag_id)
-);
-
 -- Crear la tabla renta
 CREATE TABLE IF NOT EXISTS renta (
     renta_id INT NOT NULL AUTO_INCREMENT,
@@ -49,9 +41,17 @@ CREATE TABLE IF NOT EXISTS renta (
     rent_costoEstimado DECIMAL(7, 2) NOT NULL,
     rent_finReal DATE,
     rent_costoReal DECIMAL(7, 2),
-    rent_pag_id INT UNIQUE,
     PRIMARY KEY (renta_id),
     FOREIGN KEY (rent_usu_id) REFERENCES usuario(usu_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (rent_aut_id) REFERENCES auto(aut_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (rent_pag_id) REFERENCES pago(pag_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS pago (
+    pag_id INT NOT NULL AUTO_INCREMENT,
+    pag_monto DECIMAL(7, 2) NOT NULL,
+    pag_fecha DATE NOT NULL,
+    pag_metodo ENUM('Paypal', 'VISA', 'MasterCard', 'Mercado Pago', 'Efectivo') NOT NULL,
+    pag_rent_id INT NOT NULL,
+    PRIMARY KEY (pag_id),
+    FOREIGN KEY (pag_rent_id) REFERENCES renta(renta_id) ON DELETE CASCADE ON UPDATE CASCADE,
 );
