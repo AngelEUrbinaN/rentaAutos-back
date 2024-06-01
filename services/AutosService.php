@@ -25,8 +25,8 @@
       return $autos;  
     }
 
-    public function obtenerCostoDiaPorID($autoID) {
-      $sql = "SELECT aut_costoDia FROM auto WHERE aut_id = '$autoID'";
+    public function obtenerAutoData($autoID) {
+      $sql = "SELECT * FROM auto WHERE aut_id = '$autoID'";
       $result = $this->db->query($sql);
 
       if($result->num_rows == 1) {

@@ -19,12 +19,12 @@
       }
     }
 
-    public function obtenerCostoDiaPorID($autoID) {
-      $costo = $this->AutosService->obtenerCostoDiaPorID($autoID);
-      if ($costo) {
-        echo json_encode(array("success" => true, "costoDia" => $costo));
+    public function obtenerAutoData($autoID) {
+      $auto = $this->AutosService->obtenerAutoData($autoID);
+      if ($auto) {
+        echo json_encode(array("success" => true, "auto" => $auto));
       } else {
-        echo json_encode(array("success" => false, "message" => "Error al obtener el costo por dia"));
+        echo json_encode(array("success" => false, "message" => "Error al obtener el auto"));
       }
     }
   }

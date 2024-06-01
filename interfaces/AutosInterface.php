@@ -1,6 +1,6 @@
 <?php
     interface AutosInterface {
         public function obtenerTodosAutos();
-        public function obtenerCostoDiaPorID($autoID);
+        public function obtenerAutoData($autoID);
     }
 ?>
