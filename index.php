@@ -35,6 +35,12 @@
         $userController->obtenerUsuarioPorId($idUser);
       } else if($accion == 'pagar'){
         $PagosController->registrarPago();
+      } else if($accion == 'finalizar'){
+        $idRenta = $_POST['id'];
+        $finReal = $_POST['finReal'];
+        $costoReal = $_POST['costoReal'];
+        $idAuto = $_POST['idAuto'];
+        $RentasController->finalizarRenta($idRenta, $finReal, $costoReal, $idAuto);
       }
     break;
     case 'GET':

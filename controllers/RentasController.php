@@ -46,5 +46,15 @@
         echo json_encode(array("success" => false, "message" => "Error al obtener las rentas del usuario"));
       }
     }
+
+    public function finalizarRenta($idRenta, $finReal, $costoReal, $idAuto) {
+
+      $resultado = $this->rentasService->finalizarRenta($idRenta, $finReal, $costoReal, $idAuto);
+      if ($resultado) {
+        echo json_encode(array("success" => true, "message" => "Renta Actualizada Satisfactoriamente"));
+      } else {
+        echo json_encode(array("success" => false, "message" => "Error al actualizar la renta"));
+      }
+    }
   }
 ?>

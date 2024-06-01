@@ -58,5 +58,16 @@
       
       return null;
     }
+
+    public function finalizarRenta($idRenta, $finReal, $costoReal, $idAuto) {
+      $sql_actualizar_renta = "UPDATE renta SET rent_finReal = '$finReal', rent_costoReal = '$costoReal' WHERE renta_id = '$idRenta'";
+      $sql_actualizar_auto = "UPDATE auto SET aut_disponible = 'True' WHERE aut_id = '$idAuto'";
+
+      if ($this->db->query($sql_actualizar_renta) == TRUE && $this->db->query($sql_actualizar_auto) == TRUE) {
+        return true;
+      } else {
+        return "Error: ". $this->db->error;
+      }
+    }
 	}
 ?>
