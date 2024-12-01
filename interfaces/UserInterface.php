@@ -4,5 +4,6 @@
         public function login($correo, $password);
         public function actualizarUsuario($id, $usuario);
         public function obtenerUsuarioPorId($id);
+        public function eliminarUsuario($id);
     }
 ?>
