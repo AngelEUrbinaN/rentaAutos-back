@@ -80,5 +80,17 @@
         echo json_encode(array("success" => false, "message" => "Error al Actualizar Usuario"));
       }
     }
+
+    public function eliminarUsuario($id) {
+      $resultado = $this->userService->eliminarUsuario($id);
+  
+      if ($resultado) {
+          echo json_encode(array("success" => true, "message" => "Usuario Eliminado Satisfactoriamente"));
+      } else {
+          echo json_encode(array("success" => false, "message" => "Error al Eliminar Usuario"));
+      }
   }
+  
+  }
+
 ?>

@@ -91,5 +91,15 @@
         return false;
       }
     }
+
+    public function eliminarUsuario($id) {
+      $sql_delete = "DELETE FROM usuario WHERE usu_id = '$id'";
+
+      if ($this->db->query($sql_delete) === TRUE) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 ?>

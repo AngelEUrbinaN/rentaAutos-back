@@ -12,19 +12,19 @@
   switch ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
       $accion = $_POST['accion'];
-      if($accion == 'registrar'){
+      if ($accion == 'registrar') {
         $userController->registrar();
-      } else if($accion == 'login'){
+      } else if ($accion == 'login') {
         $userController->login();
-      } else if($accion == 'rentar'){
+      } else if ($accion == 'rentar') {
         $RentasController->registrarRenta();
-      } else if($accion == 'buscarAutoData'){
+      } else if ($accion == 'buscarAutoData') {
         $autoID = $_POST['autID'];
         $AutosController->obtenerAutoData($autoID);
-      } else if($accion == 'getRentasById'){
+      } else if ($accion == 'getRentasById') {
         $userID = $_POST['idUser'];
         $RentasController->obtenerRentasPorUsuario($userID);
-      } else if($accion == 'obtenerAllData'){
+      } else if ($accion == 'obtenerAllData') {
         $rentaID = $_POST['rentaID'];
         $RentasController->obtenerAllDataRenta($rentaID);
       } else if ($accion == 'actualizarUsuario') {
@@ -33,21 +33,31 @@
       } else if ($accion == 'actualizar') {
         $idUser = $_POST['idUpdate'];
         $userController->obtenerUsuarioPorId($idUser);
-      } else if($accion == 'pagar'){
+      } else if ($accion == 'pagar') {
         $PagosController->registrarPago();
-      } else if($accion == 'finalizar'){
+      } else if ($accion == 'finalizar') {
         $idRenta = $_POST['id'];
         $finReal = $_POST['finReal'];
         $costoReal = $_POST['costoReal'];
         $idAuto = $_POST['idAuto'];
         $RentasController->finalizarRenta($idRenta, $finReal, $costoReal, $idAuto);
       }
-    break;
+      break;
     case 'GET':
       $accion = $_GET['accion'];
       if ($accion == 'todos') {
         $AutosController->obtenerTodosAutos();
       }
-    break;
+      break;
+      case "DELETE":
+        parse_str(file_get_contents("php://input"), $_DELETE); 
+        $accion = $_DELETE['accion'] ?? null;
+        if ($accion == 'eliminarUsuario') {
+            $idUser = $_DELETE['id'] ?? null; 
+            if ($idUser) {
+                $userController->eliminarUsuario($idUser);
+            }
+        }
   }
+  
 ?>
